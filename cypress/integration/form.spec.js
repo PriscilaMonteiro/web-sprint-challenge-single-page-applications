@@ -32,44 +32,16 @@ describe('Lambda Eats app', () => {
     foobarInput().should('not.exist')
     submitBtn().should('exist')
     
-
-    
-
   })
 
+  it('can select multiple toppings', () => {
 
-  // describe('Filling out the inputs', () => {
-  //   it('Can navigate to the site', () => {
-  //     cy.url().should('include', 'localhost')
-  //   })
+    toppingsInput().check(["pepperoni" ,"spicy","bacon"], { force: true })
+    cy.get(':checked').should('be.checked')
 
-  //   it('Submit button starts out disabled', () => {
-  //     submitBtn().should('be.disabled')
-  //   })
+    
+  })
 
-  //   it('Can type in the input', () => {
-  //     nameInput()
-  //       .should('have.value', '')
-  //       .type('Priscila')
-  //       .should('have.value', 'Priscila')
-
-  //     emailInput()
-  //       .should('have.value', '')
-  //       .type('pririmonteiro@teste.com')
-  //       .should('have.value', 'pririmonteiro@teste.com' )
-
-  //     passwordInput()
-  //       .should('have.value', '')
-  //       .type('1234567')
-  //       .should('have.value', '1234567' )
-  //   })
-
-  //   it('can check Yes', () => {
-  //     termsInput().check('yes')
-  //     cy.get(':checked').should('be.checked')
-  //   })
-
-  // })
 
 
 
