@@ -1,11 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router} from 'react-router-dom'
+import { GlobalStyle } from "./globalStyles";
+import Navbar from "./components/Navbar/index";
+import Hero from "./components/pages/Home";
+import Products from "./components/Products";
+import { productData } from './components/Products/data'
 
-const App = () => {
+function App() {
   return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
+    <Router>
+      {/* <Navbar /> */}
+      <GlobalStyle />
+      <Hero />
+      <Products heading='Food Delivery in Gotham City' data={productData}/>
+
+    </Router>
   );
 };
 export default App;
