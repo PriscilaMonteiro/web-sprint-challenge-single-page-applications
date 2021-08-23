@@ -1,16 +1,31 @@
-import React, {useState} from 'react';
-import Navbar from '../Navbar';
+import React, {useState, useEffect} from 'react';
+
 import { HeroContainer, HeroContent, HeroItems, HeroH1, HeroBtn } from './HeroElements'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Pizza from './Pizza'
+import formSchema from '../../validation/formSchema';
+import * as yup from 'yup';
+
+
+
+const initialDisabled = true
 
 const Hero = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [formValues, setFormValues] = useState('');
+    const [formErrors, setFormErrors] = useState({
+        size: '', 
+        sauce: '', 
+        toppings: '',
+    });
+    const [disabled, setDisabled] = useState(initialDisabled)
 
-    const toggle = () => {
-        setIsOpen(!isOpen);
-    };
+   const validate = (name, value) => {
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]})) 
+  }
 
     const onChange = (e) => {
     const {name, selectedOptions, value, type, attributes} = e.target;
@@ -45,37 +60,24 @@ const Hero = () => {
 
 
     const change =(name, value) => {
+        validate(name,value);
         
         // console.log("e--", name,value);
         setFormValues({...formValues, [name]:value});
         
     };
 
-//      return (
-//        <HeroContainer>
-//            <Navbar toggle={toggle} />
-//            <HeroContent>
-//                <HeroItems>
-//                    <HeroH1>Your favorite food, delivered while coding!
-//                        <HeroBtn>
-//                           <Link to="/buildyourpizza" style={ {color: 'inherit', textDecoration: 'inherit'}}>Pizza?</Link>
-//                           <Switch>
-//                             <Route path="/buildyourpizza" /> 
-//                             <Pizza formValues={formValues} onChange={onChange}/>
-//                           </Switch>
-//                         </HeroBtn>
-//                    </HeroH1>
-//                </HeroItems>
-//            </HeroContent>
-//        </HeroContainer>
-//     )
-// }
+
+    useEffect(() => {
+        formSchema.isValid(formValues).then(valid => setDisabled(!valid))
+    }, [formValues])
+
 
 
 
     return (
        <HeroContainer>
-           <Navbar toggle={toggle} />
+          
            <HeroContent>
                <HeroItems>
                    <HeroH1>Your favorite food, delivered while coding!

@@ -5,14 +5,17 @@ import Navbar from "./components/Navbar/index";
 import Hero from "./components/pages/Home";
 import Products from "./components/Products";
 import { productData } from './components/Products/data'
+import { HeroContainer } from "./components/pages/HeroElements";
 
 function App() {
   return (
     <Router>
-      {/* <Navbar /> */}
-      <GlobalStyle />
-      <Hero />
-      <Products heading='Food Delivery in Gotham City' data={productData}/>
+      <HeroContainer>
+        <Navbar />
+        <GlobalStyle />
+        <Hero />
+        <Products heading='Food Delivery in Gotham City' data={productData}/>
+      </HeroContainer>
 
     </Router>
   );
