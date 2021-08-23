@@ -1,7 +1,7 @@
 import { values } from 'lodash';
 import React from 'react';
 import {  HeroContent,  HeroBtn } from './HeroElements'
-
+import formSchema from '../../validation/formSchema';
 
 
 
@@ -67,7 +67,7 @@ export default function Pizza(props) {
 
                
 
-              <HeroBtn type='submit' id='order-button' onClick={handleSubmit}>Place Order</HeroBtn>
+              <HeroBtn type='submit' name='order' id='order-button' onClick={handleSubmit}>Place Order</HeroBtn>
 
 
           </HeroContent>

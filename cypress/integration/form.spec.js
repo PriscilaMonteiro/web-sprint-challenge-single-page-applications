@@ -5,10 +5,11 @@ describe('Lambda Eats app', () => {
   })
 
   // create helpers to collect dom elements
-  const sizeInput = () => cy.get('input[name=size]')
+  const sizeInput = () => cy.get('select[name=size]')
   const sauceInput = () => cy.get('input[name=sauce]')
   const toppingsInput = () => cy.get('input[name=toppings]')
   const foobarInput = () => cy.get('input[name=foobar]')
+  const submitBtn= () => cy.get('button[id="order-button"]')
   
   
  
@@ -24,19 +25,17 @@ describe('Lambda Eats app', () => {
 
 
 
-  // it('The proper elements are showing', () => {
-  //   nameInput().should('exist')
-  //   emailInput().should('exist')
-  //   passwordInput().should('exist')
-  //   roleInput().should('exist')
-  //   foobarInput().should('not.exist')
-  //   submitBtn().should('exist')
-  //   termsInput().should('exist')
+  it('The proper elements are showing', () => {
+    sizeInput().should('exist')
+    sauceInput().should('exist')
+    toppingsInput().should('exist')
+    foobarInput().should('not.exist')
+    submitBtn().should('exist')
     
 
-  //   cy.contains('submit').should('exist')
+    
 
-  // })
+  })
 
 
   // describe('Filling out the inputs', () => {
